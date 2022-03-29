@@ -1,0 +1,65 @@
+<h3 mat-dialog-title>Manage User</h3>
+<mat-dialog-content>
+  <div class="container">
+    <form [formGroup]="form" (ngSubmit)="saveUser(form)">
+      <div class="col-md-6 col-xs-6 col-sm-6">
+        <mat-form-field appearance="legacy">
+          <mat-label>nric</mat-label>
+          <input matInput [(ngModel)]="nric" placeholder="nric" formControlName="nric">
+          <mat-error *ngIf="form.get('nric')?.hasError('required')">
+            Please enter nric
+          </mat-error>
+          <mat-error *ngIf="form.get('nric')?.hasError('duplicateNric')">
+            * NRIC already exists !!
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-xs-6 col-sm-6">
+        <mat-form-field appearance="legacy">
+          <mat-label>First Name</mat-label>
+          <input matInput [(ngModel)]="firstname" placeholder="first name" formControlName="firstname">
+          <mat-error>Name is required</mat-error>
+          <mat-error **ngIf="(form.get('firstname')).errors">
+            Please enter first name
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+
+
+      <div class="col-md-6 col-xs-6 col-sm-6">
+        <mat-form-field appearance="legacy">
+          <mat-label>Last Name</mat-label>
+          <input matInput [(ngModel)]="lastname" placeholder="Last Name" formControlName="lastname">
+          <mat-error>last name is required</mat-error>
+          <mat-error **ngIf="(form.get('lastname')).errors">
+            Please enter last name
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+
+      <div class="col-md-6 col-xs-6 col-sm-6">
+        <mat-form-field appearance="legacy">
+          <mat-label>Middle Name</mat-label>
+          <input matInput [(ngModel)]="middlename" placeholder="Middle Name" formControlName="middlename">
+          <mat-error>Middle name is required</mat-error>
+          <mat-error **ngIf="(form.get('middlename')).errors">
+            Please enter Middle name
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+
+
+      <div mat-dialog-actions align="end">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Submit</button>
+      </div>
+    </form>
+  </div>
+</mat-dialog-content>
+
+<!-- </mat-dialog-content> -->
+
+<div>{{ form.value | json }}</div>
